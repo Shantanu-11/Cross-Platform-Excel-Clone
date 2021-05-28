@@ -40,6 +40,7 @@ for(let i=0;i<cell.length;i++){
             return;
         }
         val.value=cellContent;
+        updateChildren(val);
         // console.log(db[row][col]);
     })
     
@@ -49,7 +50,7 @@ formulaInput.addEventListener("blur" , function(e){
     if(formula){
         let {rowId , colId} = getRowIdColIdFromElement(lastSelectedCell);
         let cellObject = db[rowId][colId];
-        let computedValue = solveFormula(formula);
+        let computedValue = solveFormula(formula, cellObject);
         console.log(computedValue);
         // formula update
         cellObject.formula = formula;
@@ -57,5 +58,8 @@ formulaInput.addEventListener("blur" , function(e){
         cellObject.value = computedValue;
         // ui update
         lastSelectedCell.textContent = computedValue;
+
+        //update children
+        updateChildren(cellObject);
     }
 })
