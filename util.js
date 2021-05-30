@@ -12,7 +12,7 @@ function solveFormula(formula, selfCellObject){
             if (selfCellObject) {
                 // push yourself in the childrens of formula Components cellObject
                 cellObject.children.push(selfCellObject.name);
-                // selfCellObject.parents.push(cellObject.name);
+                selfCellObject.parents.push(cellObject.name);
             }
             formula = formula.replace(comp , value);
         }
@@ -48,21 +48,21 @@ function updateChildren(cellObject) {
     }
   }
   
-//   function removeFormula(cellObject){
-//     cellObject.formula = "";
-//     for(let i=0 ; i<cellObject.parents.length ; i++){
-//       let parentName = cellObject.parents[i];
-//       let {rowId , colId} = getRowIdColIdFromAddress(parentName);
-//       let parentCellObject = db[rowId][colId];
-  
-//       let updatedChildrens = parentCellObject.childrens.filter(function(children){
-//         return children != cellObject.name;
-//       })
-  
-//       parentCellObject.childrens = updatedChildrens;
-//     }
-//     cellObject.parents = [];
-//   }
+  function removeFormula(cellObject){
+  cellObject.formula = "";
+  for(let i=0 ; i<cellObject.parents.length ; i++){
+    let parentName = cellObject.parents[i];
+    let {rowId , colId} = getRowIdColIdFromAddress(parentName);
+    let parentCellObject = db[rowId][colId];
+
+    let updatedChildrens = parentCellObject.children.filter(function(children){
+      return children != cellObject.name;
+    })
+
+    parentCellObject.children = updatedChildrens;
+  }
+  cellObject.parents = [];
+}
   
 
 function getRowIdColIdFromElement(element){
@@ -74,8 +74,6 @@ function getRowIdColIdFromElement(element){
 }
 
 function getRowIdColIdFromAddress(address){
-    // B22 => colid,rowId
-    // B => 1
     let rowId = Number(address.substring(1)) - 1;
     let colId = address.charCodeAt(0) - 65;
     return {

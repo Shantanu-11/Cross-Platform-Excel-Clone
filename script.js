@@ -34,14 +34,33 @@ for(let i=0;i<cell.length;i++){
         lastSelectedCell=e.target;
         let row=e.target.getAttribute("rowid");
         let col=e.target.getAttribute("colid");
-        let cellContent=e.target.textContent;
-        let val=db[row][col];
-        if(cellContent==val.value){
+        let val=e.target.textContent;
+        let cellObject=db[row][col];
+        if(val==cellObject.value){
             return;
         }
-        val.value=cellContent;
-        updateChildren(val);
-        // console.log(db[row][col]);
+        if(cellObject.formula){
+            removeFormula(cellObject);
+            formulaInput.value="";
+        }
+        //db update, cellObject(val) if not same
+        cellObject.value=val;
+        //children update
+        updateChildren(cellObject);
+    })
+    cell[i].addEventListener("keydown" , function(e){
+        if(e.key == "Backspace"){
+            let cell1 = e.target;
+            let {rowId , colId} = getRowIdColIdFromElement(cell1);
+            let cellObject = db[rowId][colId];
+            if(cellObject.formula){
+                // cellObject.formula = "";
+               
+                removeFormula(cellObject);
+                 formulaInput.value = "";
+                // cell1.textContent = "";
+            }
+        }
     })
     
 }

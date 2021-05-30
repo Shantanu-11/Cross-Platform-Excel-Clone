@@ -35,7 +35,8 @@ function inDB(){
                 "name":name,
                 "value":"",
                 "formula":"",
-                "children":[]
+                "children":[],
+                "parents":[]
             }
             p.push(object1);
         }
