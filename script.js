@@ -36,7 +36,7 @@ for(let i=0;i<cell.length;i++){
         let col=e.target.getAttribute("colid");
         let val=e.target.textContent;
         let cellObject=db[row][col];
-        if(val==cellObject.value){
+        if(val==cellObject.value && !cellObject.formula){
             return;
         }
         if(cellObject.formula){
@@ -54,11 +54,10 @@ for(let i=0;i<cell.length;i++){
             let {rowId , colId} = getRowIdColIdFromElement(cell1);
             let cellObject = db[rowId][colId];
             if(cellObject.formula){
-                // cellObject.formula = "";
-               
+                cellObject.formula = "";
+                formulaInput.value = "";
                 removeFormula(cellObject);
-                 formulaInput.value = "";
-                // cell1.textContent = "";
+                cell.textContent = "";
             }
         }
     })
@@ -69,6 +68,9 @@ formulaInput.addEventListener("blur" , function(e){
     if(formula){
         let {rowId , colId} = getRowIdColIdFromElement(lastSelectedCell);
         let cellObject = db[rowId][colId];
+        if(cellObject.formula){
+            removeFormula(cellObject);
+        }
         let computedValue = solveFormula(formula, cellObject);
         console.log(computedValue);
         // formula update

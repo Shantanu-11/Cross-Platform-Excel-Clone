@@ -1,8 +1,9 @@
-body{
+* {
     box-sizing: border-box;
     margin: 0px;
     padding: 0px;
 }
+
 .menu {
     border: 1px solid;
     height: 30px;
@@ -17,36 +18,43 @@ body{
     border: 1px solid;
     height: 30px;
 }
+
 .cells-content {
     height: calc( 100vh - 150px);
+    /* background: lightgreen; */
     overflow: auto;
-    background-color: lightcyan;
     position: relative;
 }
-.row{
-    display: flex;
-}
-.cells {
-    position: absolute;
-    top: 30px;
-    left: 30px;
-}
-.cell {
-    border: 1px solid black;
-    min-width: 70px;
-    min-height: 30px;
-    max-width: 70px;
-}
-.sheets{
+
+.sheets {
     border: 1px solid;
     height: 30px;
-    position: relative;
-    top: fixed;
 }
+
+.row {
+    display: flex;
+}
+
+.cell {
+
+    border: 1px solid;
+
+    min-height: 30px;
+
+    min-width: 70px;
+
+    max-width: 70px;
+
+}
+
+
+
+
 .top-left-cell {
     height: 30px;
     width: 30px;
-    background: lightgray;
+    border: 1px solid black;
+    background: #F0FFF0;
     position: absolute;
     z-index: 3;
 }
@@ -67,10 +75,11 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #F0FFF0;
 }
 
 .left-col {
-    background: lightgreen;
+    background: #F0FFF0;
     width: 30px;
     position: absolute;
     top: 30px;
@@ -81,8 +90,14 @@ body{
     height: 30px;
     width: 30px;
     border: 1px solid;
-    text-align: center;
+    /* text-align: center; */
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.cells {
+    position: absolute;
+    top: 30px;
+    left: 30px;
 }
