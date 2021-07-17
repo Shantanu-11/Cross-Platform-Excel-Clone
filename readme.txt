@@ -1,1 +1,0 @@
-This is a cross platform excel clone
