@@ -1,25 +1,18 @@
 {
-  "name": "DEV",
+  "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Shantanu-11/dev_pp.git"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Shantanu-11/dev_pp/issues"
-  },
-  "homepage": "https://github.com/Shantanu-11/dev_pp#readme",
   "dependencies": {
-    "cheerio": "^1.0.0-rc.5",
-    "mkdir": "0.0.2",
-    "request": "^2.88.2"
+    "express": "^4.17.1",
+    "nodemon": "^2.0.7",
+    "socket.io": "^4.0.1"
   }
 }
